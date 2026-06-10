@@ -1,0 +1,33 @@
+name: Laravel CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupération du code
+        uses: actions/checkout@v4
+
+      - name: Installation de PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          extensions: mbstring, pdo, pdo_pgsql
+
+      - name: Installation des dépendances Composer
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Création du fichier .env
+        run: cp .env.example .env
+
+      - name: Génération de la clé Laravel
+        run: php artisan key:generate
+
+      - name: Exécution des tests
+        run: php artisan test
