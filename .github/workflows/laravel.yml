@@ -20,8 +20,19 @@ jobs:
           php-version: 8.3
           extensions: mbstring, pdo, pdo_pgsql
 
+      - name: Installation de Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
       - name: Installation des dépendances Composer
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Installation des dépendances NPM
+        run: npm install
+
+      - name: Build frontend Vite
+        run: npm run build
 
       - name: Création du fichier .env
         run: cp .env.example .env
