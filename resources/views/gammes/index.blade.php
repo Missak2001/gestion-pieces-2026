@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800">
-            Gestion des pièces
+            Gestion des gammes
         </h2>
     </x-slot>
 
@@ -15,8 +15,8 @@
             @endif
 
             <div class="mb-4">
-                <a href="{{ route('pieces.create') }}" class="px-4 py-2 bg-blue-600 text-white rounded">
-                    Ajouter une pièce
+                <a href="{{ route('gammes.create') }}" class="px-4 py-2 bg-blue-600 text-white rounded">
+                    Ajouter une gamme
                 </a>
             </div>
 
@@ -24,35 +24,31 @@
                 <table class="w-full border">
                     <thead>
                         <tr class="bg-gray-100">
-                            <th class="border p-2">Référence</th>
-                            <th class="border p-2">Libellé</th>
-                            <th class="border p-2">Type</th>
-                            <th class="border p-2">Stock</th>
-                            <th class="border p-2">Prix</th>
+                            <th class="border p-2">Nom</th>
+                            <th class="border p-2">Pièce</th>
+                            <th class="border p-2">Responsable</th>
                             <th class="border p-2">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($pieces as $piece)
+                        @forelse ($gammes as $gamme)
                             <tr>
-                                <td class="border p-2">{{ $piece->reference }}</td>
-                                <td class="border p-2">{{ $piece->libelle }}</td>
-                                <td class="border p-2">{{ $piece->typePiece->libelle ?? '-' }}</td>
-                                <td class="border p-2">{{ $piece->stock }}</td>
-                                <td class="border p-2">{{ $piece->prix }}</td>
+                                <td class="border p-2">{{ $gamme->nom }}</td>
+                                <td class="border p-2">{{ $gamme->piece->libelle ?? '-' }}</td>
+                                <td class="border p-2">{{ $gamme->responsable ?? '-' }}</td>
                                 <td class="border p-2">
-                                    <a href="{{ route('pieces.edit', $piece) }}" class="text-blue-600">
+                                    <a href="{{ route('gammes.edit', $gamme) }}" class="text-blue-600">
                                         Modifier
                                     </a>
-                                    <a href="{{ route('compositions.index', $piece) }}" class="text-green-600 ml-2">
-                                        Composition
+                                    <a href="{{ route('gamme-operations.index', $gamme) }}" class="text-green-600 ml-2">
+                                        Opérations
                                     </a>
 
-                                    <form action="{{ route('pieces.destroy', $piece) }}" method="POST" class="inline">
+                                    <form action="{{ route('gammes.destroy', $gamme) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="text-red-600 ml-2"
-                                            onclick="return confirm('Supprimer cette pièce ?')">
+                                            onclick="return confirm('Supprimer cette gamme ?')">
                                             Supprimer
                                         </button>
                                     </form>
@@ -60,8 +56,8 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="border p-4 text-center">
-                                    Aucune pièce enregistrée.
+                                <td colspan="4" class="border p-4 text-center">
+                                    Aucune gamme enregistrée.
                                 </td>
                             </tr>
                         @endforelse
