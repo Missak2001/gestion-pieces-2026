@@ -8,7 +8,5 @@ COPY nginx-site.conf /etc/nginx/sites-enabled/default.conf
 
 RUN composer install --no-dev --optimize-autoloader
 
-RUN npm install && npm run build
-
 RUN chown -R www-data:www-data storage bootstrap/cache
 RUN chmod -R 775 storage bootstrap/cache
