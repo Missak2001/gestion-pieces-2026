@@ -4,6 +4,8 @@ WORKDIR /var/www/html
 
 COPY . .
 
+RUN rm -f public/hot
+
 COPY nginx-site.conf /etc/nginx/sites-enabled/default.conf
 COPY render-start.sh /usr/local/bin/render-start.sh
 
