@@ -5,8 +5,12 @@ WORKDIR /var/www/html
 COPY . .
 
 COPY nginx-site.conf /etc/nginx/sites-enabled/default.conf
+COPY render-start.sh /usr/local/bin/render-start.sh
 
 RUN composer install --no-dev --optimize-autoloader
 
+RUN chmod +x /usr/local/bin/render-start.sh
 RUN chown -R www-data:www-data storage bootstrap/cache
 RUN chmod -R 775 storage bootstrap/cache
+
+CMD ["/usr/local/bin/render-start.sh"]
