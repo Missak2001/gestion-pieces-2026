@@ -28,7 +28,8 @@
                             <th class="border p-2">Libellé</th>
                             <th class="border p-2">Type</th>
                             <th class="border p-2">Stock</th>
-                            <th class="border p-2">Prix</th>
+                            <th class="border p-2">Prix vente</th>
+                            <th class="border p-2">Prix catalogue</th>
                             <th class="border p-2">Actions</th>
                         </tr>
                     </thead>
@@ -39,14 +40,18 @@
                                 <td class="border p-2">{{ $piece->libelle }}</td>
                                 <td class="border p-2">{{ $piece->typePiece->libelle ?? '-' }}</td>
                                 <td class="border p-2">{{ $piece->stock }}</td>
-                                <td class="border p-2">{{ $piece->prix }}</td>
+                                <td class="border p-2">{{ $piece->prix_vente ?? '-' }}</td>
+                                <td class="border p-2">{{ $piece->prix_catalogue ?? '-' }}</td>
                                 <td class="border p-2">
                                     <a href="{{ route('pieces.edit', $piece) }}" class="text-blue-600">
                                         Modifier
                                     </a>
-                                    <a href="{{ route('compositions.index', $piece) }}" class="text-green-600 ml-2">
-                                        Composition
-                                    </a>
+
+                                    @if (($piece->typePiece->libelle ?? '') !== 'Matière Première')
+                                        <a href="{{ route('compositions.index', $piece) }}" class="text-green-600 ml-2">
+                                            Composition
+                                        </a>
+                                    @endif
 
                                     <form action="{{ route('pieces.destroy', $piece) }}" method="POST" class="inline">
                                         @csrf
@@ -60,7 +65,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="border p-4 text-center">
+                                <td colspan="7" class="border p-4 text-center">
                                     Aucune pièce enregistrée.
                                 </td>
                             </tr>

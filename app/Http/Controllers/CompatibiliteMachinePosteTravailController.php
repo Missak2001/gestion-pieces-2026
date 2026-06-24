@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Machine;
 use App\Models\PosteTravail;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Models\CompatibiliteMachinePosteTravail;
 
 class CompatibiliteMachinePosteTravailController extends Controller
@@ -20,27 +21,35 @@ class CompatibiliteMachinePosteTravailController extends Controller
 
         $machines = Machine::orderBy('libelle')->get();
 
+        $couplesExistants = CompatibiliteMachinePosteTravail::select(
+            'poste_travail_id',
+            'machine_id'
+        )->get();
+
         return view(
             'compatibilites.index',
             compact(
                 'compatibilites',
                 'postes',
-                'machines'
+                'machines',
+                'couplesExistants'
             )
         );
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'poste_travail_id' => 'required',
-            'machine_id' => 'required',
+        $validated = $request->validate([
+            'poste_travail_id' => 'required|exists:postes_travail,id',
+            'machine_id' => [
+                'required',
+                'exists:machines,id',
+                Rule::unique('compatibilite_machine_poste_travails')
+                    ->where('poste_travail_id', $request->poste_travail_id),
+            ],
         ]);
 
-        CompatibiliteMachinePosteTravail::create([
-            'poste_travail_id' => $request->poste_travail_id,
-            'machine_id' => $request->machine_id,
-        ]);
+        CompatibiliteMachinePosteTravail::create($validated);
 
         return redirect()
             ->route('compatibilites.index')
@@ -49,8 +58,7 @@ class CompatibiliteMachinePosteTravailController extends Controller
 
     public function destroy(
         CompatibiliteMachinePosteTravail $compatibilite
-    )
-    {
+    ) {
         $compatibilite->delete();
 
         return back()

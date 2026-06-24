@@ -13,14 +13,19 @@
 
                 <div class="mb-4">
                     <label>Référence</label>
-                    <input type="text" name="reference" class="w-full border rounded p-2" value="{{ old('reference') }}">
-                    @error('reference') <p class="text-red-600">{{ $message }}</p> @enderror
+                    <input type="text" name="reference" class="w-full border rounded p-2"
+                        value="{{ old('reference') }}">
+                    @error('reference')
+                        <p class="text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
                     <label>Libellé</label>
                     <input type="text" name="libelle" class="w-full border rounded p-2" value="{{ old('libelle') }}">
-                    @error('libelle') <p class="text-red-600">{{ $message }}</p> @enderror
+                    @error('libelle')
+                        <p class="text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
@@ -31,19 +36,28 @@
                             <option value="{{ $type->id }}">{{ $type->libelle }}</option>
                         @endforeach
                     </select>
-                    @error('type_piece_id') <p class="text-red-600">{{ $message }}</p> @enderror
+                    @error('type_piece_id')
+                        <p class="text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
                     <label>Stock</label>
-                    <input type="number" name="stock" class="w-full border rounded p-2" value="{{ old('stock', 0) }}">
-                    @error('stock') <p class="text-red-600">{{ $message }}</p> @enderror
+                    <input type="number" name="stock" class="w-full border rounded p-2"
+                        value="{{ old('stock', 0) }}">
+                    @error('stock')
+                        <p class="text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
-                    <label>Prix</label>
-                    <input type="number" step="0.01" name="prix" class="w-full border rounded p-2" value="{{ old('prix') }}">
-                    @error('prix') <p class="text-red-600">{{ $message }}</p> @enderror
+                    <label>Prix de vente</label>
+                    <input type="number" step="0.01" name="prix_vente" class="w-full border rounded p-2">
+                </div>
+
+                <div class="mb-4">
+                    <label>Prix catalogue / achat</label>
+                    <input type="number" step="0.01" name="prix_catalogue" class="w-full border rounded p-2">
                 </div>
 
                 <button class="px-4 py-2 bg-blue-600 text-white rounded">

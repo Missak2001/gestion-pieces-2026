@@ -8,7 +8,7 @@
     <div class="py-6">
         <div class="max-w-7xl mx-auto">
 
-            @if(session('success'))
+            @if (session('success'))
                 <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">
                     {{ session('success') }}
                 </div>
@@ -21,7 +21,7 @@
                     <div class="mb-4">
                         <label>Utilisateur</label>
                         <select name="user_id" class="w-full border rounded p-2">
-                            @foreach($users as $user)
+                            @foreach ($users as $user)
                                 <option value="{{ $user->id }}">
                                     {{ $user->name }} - {{ $user->email }}
                                 </option>
@@ -32,10 +32,20 @@
                     <div class="mb-4">
                         <label>Poste de travail</label>
                         <select name="poste_travail_id" class="w-full border rounded p-2">
-                            @foreach($postes as $poste)
-                                <option value="{{ $poste->id }}">
-                                    {{ $poste->libelle }}
-                                </option>
+                            @foreach ($postes as $poste)
+                                @php
+                                    $dejaQualifie = $qualificationsExistantes->contains(function ($qualification) use (
+                                        $poste,
+                                    ) {
+                                        return $qualification->poste_travail_id == $poste->id;
+                                    });
+                                @endphp
+
+                                @if (!$dejaQualifie)
+                                    <option value="{{ $poste->id }}">
+                                        {{ $poste->libelle }}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
@@ -68,8 +78,7 @@
                                 </td>
 
                                 <td class="border p-2">
-                                    <form method="POST"
-                                          action="{{ route('qualifications.destroy', $qualification) }}">
+                                    <form method="POST" action="{{ route('qualifications.destroy', $qualification) }}">
                                         @csrf
                                         @method('DELETE')
 

@@ -11,6 +11,9 @@ use App\Http\Controllers\MachineController;
 use App\Http\Controllers\CompatibiliteMachinePosteTravailController;
 use App\Http\Controllers\UserQualificationController;
 use App\Http\Controllers\RealisationController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\DevisController;
+use App\Http\Controllers\DevisLigneController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -82,6 +85,26 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('clients', ClientController::class);
+
+    Route::resource('devis', DevisController::class);
+
+
+    Route::get(
+    '/devis/{devis}/lignes',
+    [DevisLigneController::class, 'index']
+        )->name('devis-lignes.index');
+
+        Route::post(
+            '/devis/{devis}/lignes',
+            [DevisLigneController::class, 'store']
+        )->name('devis-lignes.store');
+
+        Route::delete(
+            '/devis-lignes/{devisLigne}',
+            [DevisLigneController::class, 'destroy']
+        )->name('devis-lignes.destroy');
 
 });
 

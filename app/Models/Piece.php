@@ -10,7 +10,8 @@ class Piece extends Model
         'reference',
         'libelle',
         'stock',
-        'prix',
+        'prix_vente',
+        'prix_catalogue',
         'type_piece_id',
         'fournisseur_id'
     ];

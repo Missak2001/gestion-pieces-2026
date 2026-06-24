@@ -8,7 +8,7 @@
     <div class="py-6">
         <div class="max-w-7xl mx-auto">
 
-            @if(session('success'))
+            @if (session('success'))
                 <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">
                     {{ session('success') }}
                 </div>
@@ -16,18 +16,16 @@
 
             <div class="bg-white p-6 rounded shadow mb-6">
 
-                <form method="POST"
-                      action="{{ route('compatibilites.store') }}">
+                <form method="POST" action="{{ route('compatibilites.store') }}">
 
                     @csrf
 
                     <div class="mb-4">
                         <label>Poste de travail</label>
 
-                        <select name="poste_travail_id"
-                                class="w-full border rounded p-2">
+                        <select name="poste_travail_id" class="w-full border rounded p-2">
 
-                            @foreach($postes as $poste)
+                            @foreach ($postes as $poste)
                                 <option value="{{ $poste->id }}">
                                     {{ $poste->libelle }}
                                 </option>
@@ -39,13 +37,20 @@
                     <div class="mb-4">
                         <label>Machine</label>
 
-                        <select name="machine_id"
-                                class="w-full border rounded p-2">
+                        <select name="machine_id" class="w-full border rounded p-2">
 
-                            @foreach($machines as $machine)
-                                <option value="{{ $machine->id }}">
-                                    {{ $machine->libelle }}
-                                </option>
+                            @foreach ($machines as $machine)
+                                @php
+                                    $dejaUtilisee = $couplesExistants->contains(function ($couple) use ($machine) {
+                                        return $couple->machine_id == $machine->id;
+                                    });
+                                @endphp
+
+                                @if (!$dejaUtilisee)
+                                    <option value="{{ $machine->id }}">
+                                        {{ $machine->libelle }}
+                                    </option>
+                                @endif
                             @endforeach
 
                         </select>
@@ -74,7 +79,6 @@
                     <tbody>
 
                         @forelse($compatibilites as $compatibilite)
-
                             <tr>
                                 <td class="border p-2">
                                     {{ $compatibilite->posteTravail->libelle }}
@@ -86,8 +90,7 @@
 
                                 <td class="border p-2">
 
-                                    <form method="POST"
-                                          action="{{ route('compatibilites.destroy', $compatibilite) }}">
+                                    <form method="POST" action="{{ route('compatibilites.destroy', $compatibilite) }}">
 
                                         @csrf
                                         @method('DELETE')
@@ -104,14 +107,12 @@
                         @empty
 
                             <tr>
-                                <td colspan="3"
-                                    class="text-center p-4">
+                                <td colspan="3" class="text-center p-4">
 
                                     Aucune compatibilité définie.
 
                                 </td>
                             </tr>
-
                         @endforelse
 
                     </tbody>

@@ -23,7 +23,9 @@ class RealisationController extends Controller
 
         $gammeOperations = GammeOperation::with([
             'gamme',
-            'operation'
+            'operation',
+            'posteTravailPrevu',
+            'machinePrevue'
         ])->get();
 
         $users = User::orderBy('name')->get();

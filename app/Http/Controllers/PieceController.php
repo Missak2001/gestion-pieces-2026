@@ -28,7 +28,8 @@ class PieceController extends Controller
             'reference' => 'required|string|unique:pieces,reference',
             'libelle' => 'required|string',
             'stock' => 'required|integer|min:0',
-            'prix' => 'nullable|numeric|min:0',
+            'prix_vente' => 'nullable|numeric|min:0',
+            'prix_catalogue' => 'nullable|numeric|min:0',
             'type_piece_id' => 'required|exists:type_pieces,id',
         ]);
 
@@ -56,7 +57,8 @@ class PieceController extends Controller
             'reference' => 'required|string|unique:pieces,reference,' . $piece->id,
             'libelle' => 'required|string',
             'stock' => 'required|integer|min:0',
-            'prix' => 'nullable|numeric|min:0',
+            'prix_vente' => 'nullable|numeric|min:0',
+            'prix_catalogue' => 'nullable|numeric|min:0',
             'type_piece_id' => 'required|exists:type_pieces,id',
         ]);
 

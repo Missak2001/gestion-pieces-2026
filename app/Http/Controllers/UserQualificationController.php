@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\PosteTravail;
 use App\Models\UserQualification;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UserQualificationController extends Controller
 {
@@ -16,10 +17,16 @@ class UserQualificationController extends Controller
         $users = User::orderBy('name')->get();
         $postes = PosteTravail::orderBy('libelle')->get();
 
+        $qualificationsExistantes = UserQualification::select(
+            'user_id',
+            'poste_travail_id'
+        )->get();
+
         return view('qualifications.index', compact(
             'qualifications',
             'users',
-            'postes'
+            'postes',
+            'qualificationsExistantes'
         ));
     }
 
@@ -27,10 +34,16 @@ class UserQualificationController extends Controller
     {
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id',
-            'poste_travail_id' => 'required|exists:postes_travail,id',
+
+            'poste_travail_id' => [
+                'required',
+                'exists:postes_travail,id',
+                Rule::unique('user_qualifications')
+                    ->where('user_id', $request->user_id),
+            ],
         ]);
 
-        UserQualification::firstOrCreate($validated);
+        UserQualification::create($validated);
 
         return redirect()
             ->route('qualifications.index')
