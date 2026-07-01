@@ -187,6 +187,49 @@ main a.bg-blue-600 {
 	box-shadow: 0 10px 20px -14px rgba(14, 116, 144, 0.8);
 }
 
+main button,
+main a[class*="rounded"] {
+	font-weight: 700;
+}
+
+/* Guarantee visibility for link-buttons used as primary CTAs. */
+main a.inline-flex.items-center.rounded-xl,
+main a.inline-flex.items-center.rounded-lg {
+	background: linear-gradient(135deg, #0891b2 0%, var(--gp-cyan-700) 100%) !important;
+	border: 1px solid var(--gp-cyan-800) !important;
+	color: #ffffff !important;
+	text-decoration: none;
+	box-shadow: 0 10px 20px -14px rgba(14, 116, 144, 0.8);
+}
+
+main a.inline-flex.items-center.rounded-xl:hover,
+main a.inline-flex.items-center.rounded-lg:hover {
+	filter: brightness(0.98);
+}
+
+main button {
+	color: var(--gp-slate-800);
+}
+
+main button:not([class*="bg-"]) {
+	background: #fff;
+	border: 1px solid var(--gp-slate-300);
+	border-radius: 0.75rem;
+	padding: 0.52rem 0.85rem;
+}
+
+main button:not([class*="bg-"]):hover {
+	background: #f8fafc;
+}
+
+/* Fallback: force readability when text-white is used without background class. */
+main button.text-white:not([class*="bg-"]),
+main a.text-white:not([class*="bg-"]) {
+	background: var(--gp-cyan-700) !important;
+	border: 1px solid var(--gp-cyan-800) !important;
+	color: #fff !important;
+}
+
 main button[class*="bg-cyan-700"]:hover,
 main a[class*="bg-cyan-700"]:hover,
 main button.bg-blue-600:hover,
