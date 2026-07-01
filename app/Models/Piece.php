@@ -40,4 +40,9 @@ class Piece extends Model
     {
         return $this->hasMany(Gamme::class);
     }
+
+    public function fournisseur()
+    {
+        return $this->belongsTo(Fournisseur::class);
+    }
 }

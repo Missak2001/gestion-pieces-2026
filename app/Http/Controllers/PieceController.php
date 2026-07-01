@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Piece;
 use App\Models\TypePiece;
 use Illuminate\Http\Request;
+use App\Models\Fournisseur;
 
 class PieceController extends Controller
 {
@@ -18,8 +19,9 @@ class PieceController extends Controller
     public function create()
     {
         $types = TypePiece::orderBy('libelle')->get();
+        $fournisseurs = Fournisseur::orderBy('nom')->get();
 
-        return view('pieces.create', compact('types'));
+        return view('pieces.create', compact('types', 'fournisseurs'));
     }
 
     public function store(Request $request)
@@ -31,6 +33,7 @@ class PieceController extends Controller
             'prix_vente' => 'nullable|numeric|min:0',
             'prix_catalogue' => 'nullable|numeric|min:0',
             'type_piece_id' => 'required|exists:type_pieces,id',
+            'fournisseur_id' => 'nullable|exists:fournisseurs,id',
         ]);
 
         Piece::create($validated);
@@ -47,8 +50,9 @@ class PieceController extends Controller
     public function edit(Piece $piece)
     {
         $types = TypePiece::orderBy('libelle')->get();
+        $fournisseurs = Fournisseur::orderBy('nom')->get();
 
-        return view('pieces.edit', compact('piece', 'types'));
+        return view('pieces.edit', compact('piece', 'types', 'fournisseurs'));
     }
 
     public function update(Request $request, Piece $piece)
@@ -60,6 +64,7 @@ class PieceController extends Controller
             'prix_vente' => 'nullable|numeric|min:0',
             'prix_catalogue' => 'nullable|numeric|min:0',
             'type_piece_id' => 'required|exists:type_pieces,id',
+            'fournisseur_id' => 'nullable|exists:fournisseurs,id',
         ]);
 
         $piece->update($validated);

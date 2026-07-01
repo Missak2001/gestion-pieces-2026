@@ -40,13 +40,24 @@
                                     <a href="{{ route('gammes.edit', $gamme) }}" class="text-blue-600">
                                         Modifier
                                     </a>
+
                                     <a href="{{ route('gamme-operations.index', $gamme) }}" class="text-green-600 ml-2">
                                         Opérations
                                     </a>
 
+                                    <form method="POST" action="{{ route('gammes.realiser', $gamme) }}" class="inline">
+                                        @csrf
+
+                                        <button type="submit" class="text-purple-600 ml-2"
+                                            onclick="return confirm('Générer les réalisations de cette gamme ?')">
+                                            Réaliser
+                                        </button>
+                                    </form>
+
                                     <form action="{{ route('gammes.destroy', $gamme) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
+
                                         <button type="submit" class="text-red-600 ml-2"
                                             onclick="return confirm('Supprimer cette gamme ?')">
                                             Supprimer

@@ -51,6 +51,20 @@
                 </div>
 
                 <div class="mb-4">
+                    <label>Fournisseur</label>
+
+                    <select name="fournisseur_id" class="w-full border rounded p-2">
+                        <option value="">-- Aucun fournisseur --</option>
+
+                        @foreach ($fournisseurs as $fournisseur)
+                            <option value="{{ $fournisseur->id }}">
+                                {{ $fournisseur->nom }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="mb-4">
                     <label>Prix de vente</label>
                     <input type="number" step="0.01" name="prix_vente" class="w-full border rounded p-2">
                 </div>

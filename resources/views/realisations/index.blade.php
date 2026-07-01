@@ -118,10 +118,18 @@
                                 <td class="border p-2">
                                     {{ $realisation->temps_reel }} min
                                 </td>
+
                                 <td class="border p-2">
-                                    <form method="POST" action="{{ route('realisations.destroy', $realisation) }}">
+                                    <a href="{{ route('realisations.edit', $realisation) }}"
+                                        class="text-blue-600 mr-3">
+                                        Modifier
+                                    </a>
+
+                                    <form method="POST" action="{{ route('realisations.destroy', $realisation) }}"
+                                        class="inline">
                                         @csrf
                                         @method('DELETE')
+
                                         <button class="text-red-600">
                                             Supprimer
                                         </button>

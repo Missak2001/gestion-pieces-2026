@@ -8,10 +8,10 @@ class CommandeLigne extends Model
 {
     protected $fillable = [
         'commande_id',
+        'devis_ligne_id',
         'piece_id',
         'quantite',
         'prix_unitaire',
-        'montant_ligne'
     ];
 
     public function commande()
@@ -22,5 +22,15 @@ class CommandeLigne extends Model
     public function piece()
     {
         return $this->belongsTo(Piece::class);
+    }
+
+    public function total()
+    {
+        return $this->quantite * $this->prix_unitaire;
+    }
+
+    public function devisLigne()
+    {
+        return $this->belongsTo(DevisLigne::class);
     }
 }

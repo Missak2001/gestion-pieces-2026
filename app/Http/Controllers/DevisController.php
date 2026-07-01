@@ -39,12 +39,15 @@ class DevisController extends Controller
             ->with('success', 'Devis créé avec succès.');
     }
 
-    public function destroy(Devis $devis)
-    {
-        $devis->delete();
+        public function destroy($id)
+        {
+            $devis = Devis::findOrFail($id);
 
-        return redirect()
-            ->route('devis.index')
-            ->with('success', 'Devis supprimé avec succès.');
-    }
+            $devis->lignes()->delete();
+            $devis->delete();
+
+            return redirect()
+                ->route('devis.index')
+                ->with('success', "Devis n°$id supprimé avec succès.");
+        }
 }

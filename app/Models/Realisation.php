@@ -13,6 +13,7 @@ class Realisation extends Model
         'machine_reelle_id',
         'date_realisation',
         'temps_reel',
+        'terminee',
     ];
 
     public function gammeOperation()

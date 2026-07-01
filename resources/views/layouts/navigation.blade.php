@@ -1,3 +1,4 @@
+Menu
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
 
     <!-- Primary Navigation Menu -->
@@ -15,52 +16,76 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-6 sm:-my-px sm:ms-10 sm:flex">
+                <!-- Navigation Links -->
+                <div class="hidden sm:flex sm:items-center sm:ms-10 gap-1">
 
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         Dashboard
                     </x-nav-link>
 
-                    <x-nav-link :href="route('pieces.index')" :active="request()->routeIs('pieces.*')">
-                        Pièces
-                    </x-nav-link>
+                    @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('atelier'))
+                        <x-nav-link :href="route('pieces.index')" :active="request()->routeIs('pieces.*')">
+                            Pièces
+                        </x-nav-link>
 
-                    <x-nav-link :href="route('gammes.index')" :active="request()->routeIs('gammes.*')">
-                        Gammes
-                    </x-nav-link>
+                        <x-nav-link :href="route('gammes.index')" :active="request()->routeIs('gammes.*')">
+                            Gammes
+                        </x-nav-link>
 
-                    <x-nav-link :href="route('operations.index')" :active="request()->routeIs('operations.*')">
-                        Opérations
-                    </x-nav-link>
+                        <x-nav-link :href="route('operations.index')" :active="request()->routeIs('operations.*')">
+                            Opérations
+                        </x-nav-link>
 
-                    <x-nav-link :href="route('postes-travail.index')" :active="request()->routeIs('postes-travail.*')">
-                        Postes de travail
-                    </x-nav-link>
+                        <x-nav-link :href="route('postes-travail.index')" :active="request()->routeIs('postes-travail.*')">
+                            Postes
+                        </x-nav-link>
 
-                    <x-nav-link :href="route('machines.index')" :active="request()->routeIs('machines.*')">
-                        Machines
-                    </x-nav-link>
+                        <x-nav-link :href="route('machines.index')" :active="request()->routeIs('machines.*')">
+                            Machines
+                        </x-nav-link>
 
-                    <x-nav-link :href="route('compatibilites.index')" :active="request()->routeIs('compatibilites.*')">
-                        Machines ↔ Postes
-                    </x-nav-link>
+                        <x-nav-link :href="route('compatibilites.index')" :active="request()->routeIs('compatibilites.*')">
+                            Machines ↔ Postes
+                        </x-nav-link>
 
-                    <x-nav-link :href="route('qualifications.index')" :active="request()->routeIs('qualifications.*')">
-                        Qualifications
-                    </x-nav-link>
+                        <x-nav-link :href="route('qualifications.index')" :active="request()->routeIs('qualifications.*')">
+                            Qualifications
+                        </x-nav-link>
 
-                    <x-nav-link :href="route('realisations.index')" :active="request()->routeIs('realisations.*')">
-                        Réalisations
-                    </x-nav-link>
+                        <x-nav-link :href="route('realisations.index')" :active="request()->routeIs('realisations.*')">
+                            Réalisations
+                        </x-nav-link>
+                    @endif
 
+                    @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('commercial'))
+                        <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.*')">
+                            Clients
+                        </x-nav-link>
 
-                    <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.*')">
-                        Clients
-                    </x-nav-link>
+                        <x-nav-link :href="route('devis.index')" :active="request()->routeIs('devis.*')">
+                            Devis
+                        </x-nav-link>
 
-                    <x-nav-link :href="route('devis.index')" :active="request()->routeIs('devis.*')">
-                        Devis
-                    </x-nav-link>
+                        <x-nav-link :href="route('commandes.index')" :active="request()->routeIs('commandes.*')">
+                            Commandes
+                        </x-nav-link>
+                    @endif
+
+                    @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('comptabilite'))
+                        <x-nav-link :href="route('fournisseurs.index')" :active="request()->routeIs('fournisseurs.*')">
+                            Fournisseurs
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('achats.index')" :active="request()->routeIs('achats.*')">
+                            Achats
+                        </x-nav-link>
+                    @endif
+
+                    @if (auth()->user()->hasRole('admin'))
+                        <x-nav-link :href="route('users.roles')" :active="request()->routeIs('users.roles')">
+                            Administration
+                        </x-nav-link>
+                    @endif
 
                 </div>
 
