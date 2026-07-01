@@ -11,6 +11,9 @@ COPY render-start.sh /usr/local/bin/render-start.sh
 
 RUN composer install --no-dev --optimize-autoloader
 
+RUN npm install
+RUN npm run build
+
 RUN chmod +x /usr/local/bin/render-start.sh
 RUN chown -R www-data:www-data storage bootstrap/cache
 RUN chmod -R 775 storage bootstrap/cache
