@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-6">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8 bg-white p-6 shadow rounded">
+        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
 
             <form method="POST" action="{{ route('gammes.update', $gamme) }}">
                 @csrf
@@ -52,3 +52,4 @@
         </div>
     </div>
 </x-app-layout>
+

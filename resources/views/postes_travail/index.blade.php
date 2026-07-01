@@ -9,33 +9,33 @@
         <div class="max-w-7xl mx-auto">
 
             @if(session('success'))
-                <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">
+                <div class="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-800">
                     {{ session('success') }}
                 </div>
             @endif
 
             <a href="{{ route('postes-travail.create') }}"
-               class="bg-blue-600 text-white px-4 py-2 rounded">
+               class="inline-flex items-center rounded-xl border border-cyan-800 bg-cyan-700 px-4 py-2 font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-cyan-800 hover:shadow">
                 Ajouter un poste
             </a>
 
-            <div class="bg-white mt-4 p-4 rounded shadow">
-                <table class="w-full border">
+            <div class="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <table class="w-full border border-slate-200">
                     <thead>
-                        <tr class="bg-gray-100">
-                            <th class="border p-2">Libellé</th>
-                            <th class="border p-2">Actions</th>
+                        <tr class="bg-slate-100">
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Libellé</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Actions</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         @forelse($postes as $poste)
                             <tr>
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     {{ $poste->libelle }}
                                 </td>
 
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     <a href="{{ route('postes-travail.edit', $poste) }}"
                                        class="text-blue-600">
                                         Modifier
@@ -68,3 +68,4 @@
         </div>
     </div>
 </x-app-layout>
+

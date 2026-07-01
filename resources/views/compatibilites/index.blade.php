@@ -9,12 +9,12 @@
         <div class="max-w-7xl mx-auto">
 
             @if (session('success'))
-                <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">
+                <div class="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-800">
                     {{ session('success') }}
                 </div>
             @endif
 
-            <div class="bg-white p-6 rounded shadow mb-6">
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm mb-6">
 
                 <form method="POST" action="{{ route('compatibilites.store') }}">
 
@@ -56,7 +56,7 @@
                         </select>
                     </div>
 
-                    <button class="bg-blue-600 text-white px-4 py-2 rounded">
+                    <button class="inline-flex items-center rounded-xl border border-cyan-800 bg-cyan-700 px-4 py-2 font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-cyan-800 hover:shadow">
                         Ajouter compatibilité
                     </button>
 
@@ -66,13 +66,13 @@
 
             <div class="bg-white p-4 rounded shadow">
 
-                <table class="w-full border">
+                <table class="w-full border border-slate-200">
 
                     <thead>
-                        <tr class="bg-gray-100">
-                            <th class="border p-2">Poste</th>
-                            <th class="border p-2">Machine</th>
-                            <th class="border p-2">Action</th>
+                        <tr class="bg-slate-100">
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Poste</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Machine</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Action</th>
                         </tr>
                     </thead>
 
@@ -80,15 +80,15 @@
 
                         @forelse($compatibilites as $compatibilite)
                             <tr>
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     {{ $compatibilite->posteTravail->libelle }}
                                 </td>
 
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     {{ $compatibilite->machine->libelle }}
                                 </td>
 
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
 
                                     <form method="POST" action="{{ route('compatibilites.destroy', $compatibilite) }}">
 
@@ -124,3 +124,4 @@
         </div>
     </div>
 </x-app-layout>
+

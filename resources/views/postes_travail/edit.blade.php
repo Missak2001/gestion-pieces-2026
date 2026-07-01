@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-6">
-        <div class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
+        <div class="max-w-3xl mx-auto rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
 
             <form method="POST"
                   action="{{ route('postes-travail.update', $poste) }}">
@@ -29,3 +29,4 @@
         </div>
     </div>
 </x-app-layout>
+

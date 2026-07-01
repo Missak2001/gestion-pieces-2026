@@ -9,41 +9,41 @@
         <div class="max-w-7xl mx-auto">
 
             @if (session('success'))
-                <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">
+                <div class="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-800">
                     {{ session('success') }}
                 </div>
             @endif
 
-            <a href="{{ route('devis.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded">
+            <a href="{{ route('devis.create') }}" class="inline-flex items-center rounded-xl border border-cyan-800 bg-cyan-700 px-4 py-2 font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-cyan-800 hover:shadow">
                 Nouveau devis
             </a>
 
-            <div class="bg-white p-4 rounded shadow mt-4">
-                <table class="w-full border">
+            <div class="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <table class="w-full border border-slate-200">
                     <thead>
-                        <tr class="bg-gray-100">
-                            <th class="border p-2">ID</th>
-                            <th class="border p-2">Client</th>
-                            <th class="border p-2">Date devis</th>
-                            <th class="border p-2">Date limite</th>
-                            <th class="border p-2">Total</th>
-                            <th class="border p-2">Action</th>
+                        <tr class="bg-slate-100">
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">ID</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Client</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Date devis</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Date limite</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Total</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Action</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         @forelse($devis as $devisItem)
                             <tr>
-                                <td class="border p-2">{{ $devisItem->id }}</td>
-                                <td class="border p-2">{{ $devisItem->client->nom }}</td>
-                                <td class="border p-2">{{ $devisItem->date_devis }}</td>
-                                <td class="border p-2">{{ $devisItem->date_limite }}</td>
+                                <td class="border border-slate-200 p-2">{{ $devisItem->id }}</td>
+                                <td class="border border-slate-200 p-2">{{ $devisItem->client->nom }}</td>
+                                <td class="border border-slate-200 p-2">{{ $devisItem->date_devis }}</td>
+                                <td class="border border-slate-200 p-2">{{ $devisItem->date_limite }}</td>
 
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     {{ number_format($devisItem->total(), 2, ',', ' ') }} €
                                 </td>
 
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     <a href="{{ route('devis-lignes.index', $devisItem) }}"
                                        class="text-green-600 mr-3">
                                         Lignes
@@ -77,3 +77,4 @@
         </div>
     </div>
 </x-app-layout>
+

@@ -9,21 +9,21 @@
         <div class="max-w-7xl mx-auto">
 
             @if(session('success'))
-                <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">
+                <div class="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-800">
                     {{ session('success') }}
                 </div>
             @endif
 
             <div class="bg-white rounded shadow p-6">
 
-                <table class="w-full border">
+                <table class="w-full border border-slate-200">
 
                     <thead>
-                        <tr class="bg-gray-100">
-                            <th class="border p-2">Utilisateur</th>
-                            <th class="border p-2">Email</th>
-                            <th class="border p-2">Rôles</th>
-                            <th class="border p-2">Action</th>
+                        <tr class="bg-slate-100">
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Utilisateur</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Email</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Rôles</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Action</th>
                         </tr>
                     </thead>
 
@@ -33,15 +33,15 @@
 
                             <tr>
 
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     {{ $user->name }}
                                 </td>
 
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     {{ $user->email }}
                                 </td>
 
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
 
                                     <form method="POST"
                                           action="{{ route('users.roles.update', $user) }}">
@@ -66,7 +66,7 @@
 
                                 </td>
 
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
 
                                         <button class="bg-blue-600 text-white px-3 py-1 rounded">
                                             Enregistrer
@@ -89,3 +89,4 @@
         </div>
     </div>
 </x-app-layout>
+

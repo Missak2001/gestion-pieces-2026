@@ -9,12 +9,12 @@
         <div class="max-w-7xl mx-auto">
 
             @if (session('success'))
-                <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">
+                <div class="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-800">
                     {{ session('success') }}
                 </div>
             @endif
 
-            <div class="bg-white p-6 rounded shadow mb-6">
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm mb-6">
                 <form method="POST" action="{{ route('realisations.store') }}">
                     @csrf
 
@@ -73,53 +73,53 @@
                     <label>Temps réel en minutes</label>
                     <input type="number" name="temps_reel" min="1" class="w-full border rounded p-2 mb-4">
 
-                    <button class="bg-blue-600 text-white px-4 py-2 rounded">
+                    <button class="inline-flex items-center rounded-xl border border-cyan-800 bg-cyan-700 px-4 py-2 font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-cyan-800 hover:shadow">
                         Enregistrer réalisation
                     </button>
                 </form>
             </div>
 
             <div class="bg-white p-4 rounded shadow">
-                <table class="w-full border">
+                <table class="w-full border border-slate-200">
                     <thead>
-                        <tr class="bg-gray-100">
-                            <th class="border p-2">Gamme</th>
-                            <th class="border p-2">Opération</th>
-                            <th class="border p-2">Utilisateur</th>
-                            <th class="border p-2">Poste réel</th>
-                            <th class="border p-2">Machine réelle</th>
-                            <th class="border p-2">Date</th>
-                            <th class="border p-2">Temps réel</th>
-                            <th class="border p-2">Action</th>
+                        <tr class="bg-slate-100">
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Gamme</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Opération</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Utilisateur</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Poste réel</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Machine réelle</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Date</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Temps réel</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Action</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         @forelse($realisations as $realisation)
                             <tr>
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     {{ $realisation->gammeOperation->gamme->nom }}
                                 </td>
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     {{ $realisation->gammeOperation->operation->nom }}
                                 </td>
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     {{ $realisation->user->name }}
                                 </td>
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     {{ $realisation->posteTravailReel->libelle }}
                                 </td>
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     {{ $realisation->machineReelle->libelle }}
                                 </td>
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     {{ $realisation->date_realisation }}
                                 </td>
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     {{ $realisation->temps_reel }} min
                                 </td>
 
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     <a href="{{ route('realisations.edit', $realisation) }}"
                                         class="text-blue-600 mr-3">
                                         Modifier
@@ -170,3 +170,4 @@
             ?.addEventListener('change', remplirChampsPrevus);
     </script>
 </x-app-layout>
+

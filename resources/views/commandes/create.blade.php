@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto">
 
             @if(session('success'))
-                <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">
+                <div class="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-800">
                     {{ session('success') }}
                 </div>
             @endif
@@ -17,7 +17,7 @@
             <form method="POST" action="{{ route('commandes.store') }}">
                 @csrf
 
-                <div class="bg-white p-6 rounded shadow mb-6">
+                <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm mb-6">
                     <div class="mb-4">
                         <label>Client</label>
 
@@ -46,7 +46,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-6 rounded shadow">
+                <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
                     <h3 class="font-bold mb-4">
                         Lignes de devis valides du client
                     </h3>
@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="mt-6">
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded">
+                        <button class="inline-flex items-center rounded-xl border border-cyan-800 bg-cyan-700 px-4 py-2 font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-cyan-800 hover:shadow">
                             Créer la commande
                         </button>
 
@@ -94,15 +94,15 @@
             }
 
             let html = `
-                <table class="w-full border">
+                <table class="w-full border border-slate-200">
                     <thead>
-                        <tr class="bg-gray-100">
-                            <th class="border p-2">Choisir</th>
-                            <th class="border p-2">Devis</th>
-                            <th class="border p-2">Pièce</th>
-                            <th class="border p-2">Quantité</th>
-                            <th class="border p-2">Prix</th>
-                            <th class="border p-2">Total</th>
+                        <tr class="bg-slate-100">
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Choisir</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Devis</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Pièce</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Quantité</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Prix</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -116,11 +116,11 @@
                                    name="devis_ligne_ids[]"
                                    value="${ligne.id}">
                         </td>
-                        <td class="border p-2">Devis #${ligne.devis_id}</td>
-                        <td class="border p-2">${ligne.piece}</td>
-                        <td class="border p-2">${ligne.quantite}</td>
-                        <td class="border p-2">${Number(ligne.prix_unitaire).toFixed(2)} €</td>
-                        <td class="border p-2">${Number(ligne.total).toFixed(2)} €</td>
+                        <td class="border border-slate-200 p-2">Devis #${ligne.devis_id}</td>
+                        <td class="border border-slate-200 p-2">${ligne.piece}</td>
+                        <td class="border border-slate-200 p-2">${ligne.quantite}</td>
+                        <td class="border border-slate-200 p-2">${Number(ligne.prix_unitaire).toFixed(2)} €</td>
+                        <td class="border border-slate-200 p-2">${Number(ligne.total).toFixed(2)} €</td>
                     </tr>
                 `;
             });
@@ -134,3 +134,4 @@
         });
     </script>
 </x-app-layout>
+

@@ -9,42 +9,42 @@
         <div class="max-w-7xl mx-auto">
 
             @if (session('success'))
-                <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">
+                <div class="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-800">
                     {{ session('success') }}
                 </div>
             @endif
 
-            <a href="{{ route('achats.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded">
+            <a href="{{ route('achats.create') }}" class="inline-flex items-center rounded-xl border border-cyan-800 bg-cyan-700 px-4 py-2 font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-cyan-800 hover:shadow">
                 Nouvelle commande fournisseur
             </a>
 
-            <div class="bg-white rounded shadow mt-4 p-4">
-                <table class="w-full border">
+            <div class="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <table class="w-full border border-slate-200">
                     <thead>
-                        <tr class="bg-gray-100">
-                            <th class="border p-2">ID</th>
-                            <th class="border p-2">Fournisseur</th>
-                            <th class="border p-2">Commande</th>
-                            <th class="border p-2">Livraison prévue</th>
-                            <th class="border p-2">Livraison réelle</th>
-                            <th class="border p-2">Total</th>
-                            <th class="border p-2">Actions</th>
+                        <tr class="bg-slate-100">
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">ID</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Fournisseur</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Commande</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Livraison prévue</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Livraison réelle</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Total</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Actions</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         @forelse($achats as $achat)
                             <tr>
-                                <td class="border p-2">{{ $achat->id }}</td>
-                                <td class="border p-2">{{ $achat->fournisseur->nom }}</td>
-                                <td class="border p-2">{{ $achat->date_commande }}</td>
-                                <td class="border p-2">{{ $achat->date_livraison_prevue }}</td>
-                                <td class="border p-2">{{ $achat->date_livraison_reelle ?? '-' }}</td>
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">{{ $achat->id }}</td>
+                                <td class="border border-slate-200 p-2">{{ $achat->fournisseur->nom }}</td>
+                                <td class="border border-slate-200 p-2">{{ $achat->date_commande }}</td>
+                                <td class="border border-slate-200 p-2">{{ $achat->date_livraison_prevue }}</td>
+                                <td class="border border-slate-200 p-2">{{ $achat->date_livraison_reelle ?? '-' }}</td>
+                                <td class="border border-slate-200 p-2">
                                     {{ number_format($achat->total(), 2, ',', ' ') }} €
                                 </td>
 
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     @if($achat->date_livraison_reelle)
                                         <span class="text-green-600 font-bold">
                                             Réceptionnée
@@ -93,3 +93,4 @@
         </div>
     </div>
 </x-app-layout>
+

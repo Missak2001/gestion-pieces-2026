@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto">
 
             @if(session('success'))
-                <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">
+                <div class="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-800">
                     {{ session('success') }}
                 </div>
             @endif
@@ -62,7 +62,7 @@
                                class="w-full border rounded p-2">
                     </div>
 
-                    <button class="bg-blue-600 text-white px-4 py-2 rounded">
+                    <button class="inline-flex items-center rounded-xl border border-cyan-800 bg-cyan-700 px-4 py-2 font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-cyan-800 hover:shadow">
                         Ajouter
                     </button>
 
@@ -72,15 +72,15 @@
 
             <div class="bg-white rounded shadow p-4">
 
-                <table class="w-full border">
+                <table class="w-full border border-slate-200">
 
                     <thead>
-                        <tr class="bg-gray-100">
-                            <th class="border p-2">Pièce</th>
-                            <th class="border p-2">Quantité</th>
-                            <th class="border p-2">Prix</th>
-                            <th class="border p-2">Total</th>
-                            <th class="border p-2">Action</th>
+                        <tr class="bg-slate-100">
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Pièce</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Quantité</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Prix</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Total</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Action</th>
                         </tr>
                     </thead>
 
@@ -90,23 +90,23 @@
 
                         <tr>
 
-                            <td class="border p-2">
+                            <td class="border border-slate-200 p-2">
                                 {{ $ligne->piece->libelle }}
                             </td>
 
-                            <td class="border p-2">
+                            <td class="border border-slate-200 p-2">
                                 {{ $ligne->quantite }}
                             </td>
 
-                            <td class="border p-2">
+                            <td class="border border-slate-200 p-2">
                                 {{ number_format($ligne->prix_achat,2,',',' ') }} €
                             </td>
 
-                            <td class="border p-2">
+                            <td class="border border-slate-200 p-2">
                                 {{ number_format($ligne->total(),2,',',' ') }} €
                             </td>
 
-                            <td class="border p-2">
+                            <td class="border border-slate-200 p-2">
 
                                 <form method="POST"
                                       action="{{ route('achat-lignes.destroy',$ligne) }}">
@@ -149,3 +149,4 @@
         </div>
     </div>
 </x-app-layout>
+

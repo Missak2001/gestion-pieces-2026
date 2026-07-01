@@ -9,29 +9,29 @@
         <div class="max-w-7xl mx-auto">
 
             @if(session('success'))
-                <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">
+                <div class="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-800">
                     {{ session('success') }}
                 </div>
             @endif
 
             <div class="mb-4">
                 <a href="{{ route('fournisseurs.create') }}"
-                   class="bg-blue-600 text-white px-4 py-2 rounded">
+                   class="inline-flex items-center rounded-xl border border-cyan-800 bg-cyan-700 px-4 py-2 font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-cyan-800 hover:shadow">
                     Ajouter un fournisseur
                 </a>
             </div>
 
-            <div class="bg-white shadow rounded p-4">
+            <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
 
-                <table class="w-full border">
+                <table class="w-full border border-slate-200">
 
                     <thead>
-                        <tr class="bg-gray-100">
-                            <th class="border p-2">Nom</th>
-                            <th class="border p-2">Email</th>
-                            <th class="border p-2">Téléphone</th>
-                            <th class="border p-2">Adresse</th>
-                            <th class="border p-2">Actions</th>
+                        <tr class="bg-slate-100">
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Nom</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Email</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Téléphone</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Adresse</th>
+                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Actions</th>
                         </tr>
                     </thead>
 
@@ -41,23 +41,23 @@
 
                             <tr>
 
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     {{ $fournisseur->nom }}
                                 </td>
 
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     {{ $fournisseur->email ?? '-' }}
                                 </td>
 
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     {{ $fournisseur->telephone ?? '-' }}
                                 </td>
 
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
                                     {{ $fournisseur->adresse ?? '-' }}
                                 </td>
 
-                                <td class="border p-2">
+                                <td class="border border-slate-200 p-2">
 
                                     <a href="{{ route('fournisseurs.edit', $fournisseur) }}"
                                        class="text-blue-600">
@@ -102,3 +102,4 @@
         </div>
     </div>
 </x-app-layout>
+
