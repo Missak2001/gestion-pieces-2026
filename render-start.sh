@@ -2,7 +2,10 @@
 
 php artisan config:clear
 php artisan cache:clear
-php artisan migrate --force
-php artisan db:seed --force
+php artisan route:clear
+php artisan view:clear
 
-/start.sh
+php artisan migrate --force
+php artisan db:seed --class=RoleSeeder --force
+
+exec /start.sh
