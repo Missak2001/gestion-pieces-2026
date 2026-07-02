@@ -14,21 +14,50 @@
                 </div>
             @endif
 
-            <a href="{{ route('achats.create') }}" class="inline-flex items-center rounded-xl border border-cyan-800 bg-cyan-700 px-4 py-2 font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-cyan-800 hover:shadow">
+            {{-- <a href="{{ route('achats.create') }}"
+                class="inline-flex items-center rounded-xl border border-cyan-800 bg-cyan-700 px-4 py-2 font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-cyan-800 hover:shadow">
                 Nouvelle commande fournisseur
-            </a>
+            </a> --}}
+
+            <div class="mb-4 flex gap-3">
+                <a href="{{ route('achats.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded">
+                    Nouvelle commande fournisseur
+                </a>
+
+                <a href="{{ route('exports.achats') }}" class="bg-green-600 text-white px-4 py-2 rounded">
+                    Export CSV achats
+                </a>
+
+                <a href="{{ route('exports.factures') }}" class="bg-green-600 text-white px-4 py-2 rounded">
+                    Export CSV factures
+                </a>
+            </div>
 
             <div class="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <table class="w-full border border-slate-200">
                     <thead>
                         <tr class="bg-slate-100">
-                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">ID</th>
-                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Fournisseur</th>
-                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Commande</th>
-                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Livraison prévue</th>
-                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Livraison réelle</th>
-                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Total</th>
-                            <th class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">Actions</th>
+                            <th
+                                class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">
+                                ID</th>
+                            <th
+                                class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">
+                                Fournisseur</th>
+                            <th
+                                class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">
+                                Commande</th>
+                            <th
+                                class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">
+                                Livraison prévue</th>
+                            <th
+                                class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">
+                                Livraison réelle</th>
+                            <th
+                                class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">
+                                Total</th>
+                            <th
+                                class="border border-slate-200 p-2 text-xs font-bold uppercase tracking-wide text-slate-600">
+                                Actions</th>
                         </tr>
                     </thead>
 
@@ -45,31 +74,27 @@
                                 </td>
 
                                 <td class="border border-slate-200 p-2">
-                                    @if($achat->date_livraison_reelle)
+                                    @if ($achat->date_livraison_reelle)
                                         <span class="text-green-600 font-bold">
                                             Réceptionnée
                                         </span>
                                     @else
-                                        <form method="POST"
-                                              action="{{ route('achats.reception', $achat) }}"
-                                              class="inline">
+                                        <form method="POST" action="{{ route('achats.reception', $achat) }}"
+                                            class="inline">
                                             @csrf
 
                                             <button class="text-blue-600 mr-3"
-                                                    onclick="return confirm('Réceptionner cette commande ?')">
+                                                onclick="return confirm('Réceptionner cette commande ?')">
                                                 Réceptionner
                                             </button>
                                         </form>
                                     @endif
 
-                                    <a href="{{ route('achat-lignes.index', $achat) }}"
-                                       class="text-green-600 ml-3">
+                                    <a href="{{ route('achat-lignes.index', $achat) }}" class="text-green-600 ml-3">
                                         Lignes
                                     </a>
 
-                                    <form method="POST"
-                                          action="{{ route('achats.destroy', $achat) }}"
-                                          class="inline">
+                                    <form method="POST" action="{{ route('achats.destroy', $achat) }}" class="inline">
                                         @csrf
                                         @method('DELETE')
 
@@ -93,4 +118,3 @@
         </div>
     </div>
 </x-app-layout>
-
