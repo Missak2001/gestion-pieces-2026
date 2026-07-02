@@ -9,11 +9,26 @@ use App\Models\Fournisseur;
 
 class PieceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pieces = Piece::with('typePiece')->orderBy('libelle')->get();
+        $types = TypePiece::orderBy('libelle')->get();
 
-        return view('pieces.index', compact('pieces'));
+        $pieces = Piece::with(['typePiece', 'fournisseur'])
+            ->when($request->filled('search'), function ($query) use ($request) {
+                $search = $request->search;
+
+                $query->where(function ($q) use ($search) {
+                    $q->where('reference', 'like', "%{$search}%")
+                    ->orWhere('libelle', 'like', "%{$search}%");
+                });
+            })
+            ->when($request->filled('type_piece_id'), function ($query) use ($request) {
+                $query->where('type_piece_id', $request->type_piece_id);
+            })
+            ->orderBy('libelle')
+            ->get();
+
+        return view('pieces.index', compact('pieces', 'types'));
     }
 
     public function create()
